@@ -1,3 +1,4 @@
 .DS_Store
 cs224d/datasets/.DS_Store
 cs224d/.DS_Store
+.env
