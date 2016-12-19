@@ -6,9 +6,9 @@ from q2_sigmoid import sigmoid, sigmoid_grad
 from q2_gradcheck import gradcheck_naive
 
 def forward_backward_prop(data, labels, params, dimensions):
-    """ 
-    Forward and backward propagation for a two-layer sigmoidal network 
-    
+    """
+    Forward and backward propagation for a two-layer sigmoidal network
+
     Compute the forward propagation and for the cross entropy cost,
     and backward propagation for the gradients for all parameters.
     """
@@ -28,23 +28,23 @@ def forward_backward_prop(data, labels, params, dimensions):
     ### YOUR CODE HERE: forward propagation
     raise NotImplementedError
     ### END YOUR CODE
-    
+
     ### YOUR CODE HERE: backward propagation
     raise NotImplementedError
     ### END YOUR CODE
-    
+
     ### Stack gradients (do not modify)
-    grad = np.concatenate((gradW1.flatten(), gradb1.flatten(), 
+    grad = np.concatenate((gradW1.flatten(), gradb1.flatten(),
         gradW2.flatten(), gradb2.flatten()))
-    
+
     return cost, grad
 
 def sanity_check():
     """
-    Set up fake data and parameters for the neural network, and test using 
+    Set up fake data and parameters for the neural network, and test using
     gradcheck.
     """
-    print "Running sanity check..."
+    print("Running sanity check...")
 
     N = 20
     dimensions = [10, 5, 10]
@@ -52,21 +52,21 @@ def sanity_check():
     labels = np.zeros((N, dimensions[2]))
     for i in xrange(N):
         labels[i,random.randint(0,dimensions[2]-1)] = 1
-    
+
     params = np.random.randn((dimensions[0] + 1) * dimensions[1] + (
         dimensions[1] + 1) * dimensions[2], )
 
     gradcheck_naive(lambda params: forward_backward_prop(data, labels, params,
         dimensions), params)
 
-def your_sanity_checks(): 
+def your_sanity_checks():
     """
     Use this space add any additional sanity checks by running:
-        python q2_neural.py 
+        python q2_neural.py
     This function will not be called by the autograder, nor will
     your additional tests be graded.
     """
-    print "Running your sanity checks..."
+    print("Running your sanity checks...")
     ### YOUR CODE HERE
     raise NotImplementedError
     ### END YOUR CODE
