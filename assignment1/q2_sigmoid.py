@@ -17,11 +17,8 @@ def sigmoid_grad(f):
     function value of your original input x.
     """
 
-    ### YOUR CODE HERE
-    raise NotImplementedError
-    ### END YOUR CODE
+    return np.multiply(f, (1 - f));
 
-    return f
 
 def test_sigmoid_fn():
     """
@@ -58,5 +55,5 @@ def test_sigmoid():
 
 if __name__ == "__main__":
     test_sigmoid_fn()
-    # test_sigmoid_grad()
+    test_sigmoid_grad()
     # test_sigmoid()
