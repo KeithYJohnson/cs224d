@@ -4,11 +4,9 @@ def sigmoid(x):
     """
     Compute the sigmoid function for the input here.
     """
-    
     ### YOUR CODE HERE
-    raise NotImplementedError
+    x = 1 / (1 + np.exp(-x))
     ### END YOUR CODE
-    
     return x
 
 def sigmoid_grad(f):
