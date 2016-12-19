@@ -24,22 +24,28 @@ def sigmoid_grad(f):
     
     return f
 
-def test_sigmoid_basic():
+def test_sigmoid_fn():
     """
-    Some simple tests to get you started. 
+    Some simple tests to get you started.
     Warning: these are not exhaustive.
     """
-    print "Running basic tests..."
+    print("Running basic tests...")
     x = np.array([[1, 2], [-1, -2]])
     f = sigmoid(x)
-    g = sigmoid_grad(f)
-    print f
-    assert np.amax(f - np.array([[0.73105858, 0.88079708], 
+    print(f)
+    assert np.amax(f - np.array([[0.73105858, 0.88079708],
         [0.26894142, 0.11920292]])) <= 1e-6
-    print g
+    print("You should verify these results!\n")
+
+def test_sigmoid_grad():
+    x = np.array([[1, 2], [-1, -2]])
+    f = sigmoid(x)
+    print('running test_sigmoid_grad')
+    g = sigmoid_grad(f)
     assert np.amax(g - np.array([[0.19661193, 0.10499359],
         [0.19661193, 0.10499359]])) <= 1e-6
     print "You should verify these results!\n"
+    [0.19661193, 0.10499359]])) <= 1e-6
 
 def test_sigmoid(): 
     """
@@ -54,5 +60,4 @@ def test_sigmoid():
     ### END YOUR CODE
 
 if __name__ == "__main__":
-    test_sigmoid_basic();
-    test_sigmoid()
+    # test_sigmoid_grad()
