@@ -61,6 +61,14 @@ def test_softmax_basic():
 
     print( "You shoul1d verify these results!\n")
 
+def test_softmax_constant_offset():
+    v = np.array([1,2])
+    without_constant = softmax(v)
+    for i in range(-5,5):
+        with_constant = softmax(v+i)
+        assert(np.allclose(without_constant, with_constant))
+
 
 if __name__ == "__main__":
-    test_softmax_basic()
+     # test_softmax_basic()
+    test_softmax_constant_offset()
