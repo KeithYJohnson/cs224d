@@ -29,6 +29,10 @@ def forward_backward_prop(data, labels, params, dimensions):
     ### YOUR CODE HERE: forward propagation
     hidden_layer_activation = sigmoid(np.dot(data, W1) + b1)
     predictions = softmax(np.dot(hidden_layer_activation, W2) + b2)
+    hidden_layer_weighted_input = np.dot(data, W1) + b1
+    hidden_layer_activation = sigmoid(hidden_layer_weighted_input)
+    softmax_weighted_input = np.dot(hidden_layer_activation, W2) + b2
+    predictions = softmax(softmax_weighted_input)
     cost =  compute_cost(predictions, labels)
     ### END YOUR CODE
 
