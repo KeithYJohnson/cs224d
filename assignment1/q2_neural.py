@@ -4,6 +4,7 @@ import random
 from q1_softmax import softmax
 from q2_sigmoid import sigmoid, sigmoid_grad
 from q2_gradcheck import gradcheck_naive
+from compute_cost import *
 
 def forward_backward_prop(data, labels, params, dimensions):
     """
@@ -26,16 +27,31 @@ def forward_backward_prop(data, labels, params, dimensions):
     b2 = np.reshape(params[ofs:ofs + Dy], (1, Dy))
 
     ### YOUR CODE HERE: forward propagation
-    raise NotImplementedError
+    hidden_layer_weighted_input = np.dot(data, W1) + b1
+    hidden_layer_activation = sigmoid(hidden_layer_weighted_input)
+    softmax_weighted_input = np.dot(hidden_layer_activation, W2) + b2
+    predictions = softmax(softmax_weighted_input)
+    cost =  compute_cost(predictions, labels)
     ### END YOUR CODE
 
+
+
     ### YOUR CODE HERE: backward propagation
-    raise NotImplementedError
+    output_layer_error = predictions - labels
+    w2_gradient = np.dot(hidden_layer_activation.T, output_layer_error)
+    b2_gradient = np.sum(output_layer_error, axis = 0)
+
+    hidden_layer_error = np.multiply(
+        np.dot(output_layer_error, W2.T),
+        sigmoid_grad(hidden_layer_activation)
+    )
+    w1_gradient = np.dot(data.T, hidden_layer_error)
+    b1_gradient = np.sum(hidden_layer_error, axis = 0)
     ### END YOUR CODE
 
     ### Stack gradients (do not modify)
-    grad = np.concatenate((gradW1.flatten(), gradb1.flatten(),
-        gradW2.flatten(), gradb2.flatten()))
+    grad = np.concatenate((w1_gradient.flatten(), b1_gradient.flatten(),
+        w2_gradient.flatten(), b2_gradient.flatten()))
 
     return cost, grad
 
@@ -68,9 +84,9 @@ def your_sanity_checks():
     """
     print("Running your sanity checks...")
     ### YOUR CODE HERE
-    raise NotImplementedError
+    # raise NotImplementedError
     ### END YOUR CODE
 
 if __name__ == "__main__":
     sanity_check()
-    your_sanity_checks()
+    # your_sanity_checks()
