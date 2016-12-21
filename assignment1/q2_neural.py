@@ -4,6 +4,7 @@ import random
 from q1_softmax import softmax
 from q2_sigmoid import sigmoid, sigmoid_grad
 from q2_gradcheck import gradcheck_naive
+from compute_cost import *
 
 def forward_backward_prop(data, labels, params, dimensions):
     """
@@ -26,7 +27,9 @@ def forward_backward_prop(data, labels, params, dimensions):
     b2 = np.reshape(params[ofs:ofs + Dy], (1, Dy))
 
     ### YOUR CODE HERE: forward propagation
-    raise NotImplementedError
+    hidden_layer_activation = sigmoid(np.dot(data, W1) + b1)
+    predictions = softmax(np.dot(hidden_layer_activation, W2) + b2)
+    cost =  compute_cost(predictions, labels)
     ### END YOUR CODE
 
     ### YOUR CODE HERE: backward propagation
