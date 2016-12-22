@@ -8,12 +8,7 @@ from q2_sigmoid import sigmoid, sigmoid_grad
 def normalizeRows(x):
     """ Row normalization function """
     # Implement a function that normalizes each row of a matrix to have unit length
-
-    ### YOUR CODE HERE
-    raise NotImplementedError
-    ### END YOUR CODE
-
-    return x
+    return x / x.max(axis = 0)
 
 def test_normalize_rows():
     print("Testing normalizeRows...")
