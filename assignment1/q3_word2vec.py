@@ -45,7 +45,8 @@ def softmaxCostAndGradient(predicted, target, outputVectors, dataset):
     # assignment!
 
     ### YOUR CODE HERE
-    raise NotImplementedError
+    probabilities = softmax(np.dot(outputVectors.T, predicted))
+    cost = -np.log(probabilities)
     ### END YOUR CODE
 
     return cost, gradPred, grad
