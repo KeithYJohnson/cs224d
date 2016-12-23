@@ -51,6 +51,11 @@ def softmaxCostAndGradient(predicted, target, outputVectors, dataset):
     cost = -np.log(probabilities)
     ### END YOUR CODE
 
+    # Could one-hot encode a vector but all the other indices
+    # would just be subtracted by 0
+    output_layer_error = probabilities
+    output_layer_error[target] -= 1
+
     return cost, gradPred, grad
 
 def negSamplingCostAndGradient(predicted, target, outputVectors, dataset,
