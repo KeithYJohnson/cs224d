@@ -210,8 +210,8 @@ def test_word2vec():
 
     def getRandomContext(C):
         tokens = ["a", "b", "c", "d", "e"]
-        return tokens[random.randint(0,4)], [tokens[random.randint(0,4)] \
-           for i in xrange(2*C)]
+        return tokens[random.randint(0,4)], \
+               [tokens[random.randint(0,4)] for i in range(2*C)]
     dataset.sampleTokenIdx = dummySampleTokenIdx
     dataset.getRandomContext = getRandomContext
 
