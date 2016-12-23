@@ -55,6 +55,18 @@ def softmaxCostAndGradient(predicted, target, outputVectors, dataset):
     # would just be subtracted by 0
     output_layer_error = probabilities
     output_layer_error[target] -= 1
+    num_predictions = output_layer_error.shape[0]
+    num_embedding_dims = predicted.shape[0]
+
+    grad = np.multiply(
+        output_layer_error.reshape((num_predictions, 1)),
+        predicted.reshape((1, num_embedding_dims))
+    )
+
+    gradPred = np.dot(
+        output_layer_error.reshape(1,num_predictions),
+        outputVectors
+    ).flatten()
 
     return cost, gradPred, grad
 
