@@ -45,7 +45,9 @@ def softmaxCostAndGradient(predicted, target, outputVectors, dataset):
     # assignment!
 
     ### YOUR CODE HERE
-    probabilities = softmax(np.dot(outputVectors.T, predicted))
+    weighted_input = np.dot(predicted, outputVectors.T)
+    probabilities = softmax(weighted_input)
+    print('probabilities: ', probabilities)
     cost = -np.log(probabilities)
     ### END YOUR CODE
 
