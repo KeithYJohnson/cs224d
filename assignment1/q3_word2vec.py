@@ -121,10 +121,34 @@ def skipgram(currentWord, C, contextWords, tokens, inputVectors, outputVectors,
     # assignment!
 
     ### YOUR CODE HERE
-    raise NotImplementedError
+    # Creating the two params that word2vecCostAndGradient needs
+    # to compute cost and gradients
+    current_word_index = tokens[currentWord]
+    predicted_word_vector = inputVectors[current_word_index, :]
+
+    # Will be incremented from inside the loop
+    input_vector_gradient = np.zeros(inputVectors.shape)
+    output_vector_gradient = np.zeros(outputVectors.shape)
+    cost = 0
+
+    for context_word in contextWords:
+        print('predicting context_word: ', context_word)
+        context_word_index = tokens[context_word]
+        [cost_at_context_word,
+         input_vector_gradient_at_context_word,
+         output_vector_gradient_at_context_word] = \
+            word2vecCostAndGradient(
+                predicted_word_vector,
+                context_word_index,
+                outputVectors,
+                dataset
+            )
+        cost += cost_at_context_word
+        input_vector_gradient += input_vector_gradient_at_context_word
+        output_vector_gradient += output_vector_gradient_at_context_word
     ### END YOUR CODE
 
-    return cost, gradIn, gradOut
+    return cost, input_vector_gradient, output_vector_gradient
 
 def cbow(currentWord, C, contextWords, tokens, inputVectors, outputVectors,
     dataset, word2vecCostAndGradient = softmaxCostAndGradient):
